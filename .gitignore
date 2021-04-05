@@ -102,3 +102,11 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Environment variables
+.env
+.env.local
+.env.dev
+
+#package locks
+yarn.lock
