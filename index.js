@@ -27,12 +27,14 @@ app.use((req, res, next) => {
 	);
 	next();
 });
+
 app.use(express.json());
+app.use(bodyParser.urlencoded({extended: true }));
+app.use(bodyParser.json());
 
 app.get('/user/:userId', (req, res, next) => {
-    req.params
     const user = new User({
-        discordId: "456",
+        discordId: "123",
         discordUsername: "Dont@Me",
         givePoints: 500,
         earnedPoints: 1000
@@ -41,6 +43,19 @@ app.get('/user/:userId', (req, res, next) => {
     res.status(200).json({
         status: "Success!",
         content: {user}
+    });
+});
+
+app.get('/recognition/:recognitionId', (req, res, next) => {
+    const recognition = new Recognition({
+		author: "Kurt Vonnegut",
+		receiver: "Ray Bradbury",
+		timestamp: Date.now
+	});
+    console.log(`${logTag} default recognition returned`);
+    res.status(200).json({
+        status: "Success!",
+        content: {recognition}
     });
 });
 
