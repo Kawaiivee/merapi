@@ -32,11 +32,27 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
+//User Controller Endpoints
 app.get('/user/list', UserController.GetUserList);
+
+app.get('/user/:userId', UserController.GetUser);
 
 app.post('/user/add', UserController.AddUser);
 
-app.put('/user/edit');
+app.post('/user/edit', UserController.EditUser);
+
+app.get('/user/:useId', UserController.DeleteUser);
+
+//Note Controller Endpoints
+app.get('/note/list', NoteController.GetNoteList);
+
+app.get('/note/:noteId', NoteController.GetNote);
+
+app.post('/note/add', NoteController.AddNote);
+
+app.post('/note/edit', NoteController.EditNote);
+
+app.get('/note/:noteId', NoteController.DeleteNote);
 
 //fix this to a process.env var
 app.listen(3000, () => console.log(`${logTag} merapi server started`));
