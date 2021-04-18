@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const noteSchema = mongoose.Schema({
+    noteId: { type: String, required: true },
     author: { type: String, required: true },
     receiver: { type: String },
     note: { type: String },

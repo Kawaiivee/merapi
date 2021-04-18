@@ -2,8 +2,9 @@ require('dotenv').config()
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const User = require('@/../../Models/User');
-const Note = require('@/../../Models/Note');
+
+const UserController = require("@/../../Controllers/UserController");
+const NoteController = require("@/../../Controllers/NoteController");
 
 const logTag = '[index.js]';
 
@@ -31,18 +32,11 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-app.get('/user/:userId', (req, res, next) => {
-    const user = new User({
-        id: "123",
-        name: "Dont@Me"
-    });
-    console.log(`${logTag} default user returned`);
-    res.status(200).json({
-        status: "Success!",
-        content: {user}
-    });
-});
+app.get('/user/list', UserController.GetUserList);
 
+app.post('/user/add', UserController.AddUser);
+
+app.put('/user/edit');
 
 //fix this to a process.env var
 app.listen(3000, () => console.log(`${logTag} merapi server started`));
