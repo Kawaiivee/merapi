@@ -1,19 +1,30 @@
+var MongoAPI = require('@/../../APIs/MongoAPI');
 var User = require("@/../../Models/User");
+
 const logTag = "[UserController.js]";
 
-exports.GetUserList = (req, res) =>{
+exports.GetUserList = async (req, res) => {
     console.log(`${logTag} GetUserList called`);
-    res.send("GetUserList");
+    var result = await MongoAPI.GetUserList();
+    res.send(result);
 };
 
-exports.AddUser = (req, res) => {
+exports.AddUser = async (req, res) => {
     console.log(`${logTag} AddUser called`);
-    res.send("AddUser");
+
+    const newUser = {
+        userId: req.body.userId,
+        name: req.body.name
+    };
+    var result = await MongoAPI.AddUser(newUser);
+    console.log(result);
+    res.send();
 };
 
 exports.GetUser = (req, res) => {
-    console.log(`${logTag} GetUser called`);
-    res.send("GetUser");
+    console.log(`${logTag} GetUserList called`);
+    var result = MongoAPI.GetUserList();
+    res.send(result);
 };
 
 exports.EditUser = (req, res) => {
