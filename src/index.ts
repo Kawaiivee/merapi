@@ -1,18 +1,21 @@
 require('dotenv').config();
-import express from "express";
+import express from 'express';
+import bodyParser from 'body-parser';
+
 const app = express();
 const mongoose = require('mongoose');
 
 const logTag = '[index.js]';
-const UserController = require("@/../../Controllers/UserController");
-const NoteController = require("@/../../Controllers/NoteController");
+const UserController = require('@/../../Controllers/UserController');
+const NoteController = require('@/../../Controllers/NoteController');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true , user: process.env.USER, pass: process.env.PASS, dbName: process.env.DATABASE_NAME });
 const db = mongoose.connection;
-db.on('error', (error) => console.error(error));
+db.on('error', (error: Error) => console.error(error));
 db.once('open', () => console.log(`${logTag} connected to database`));
 
+//Cors
 app.use((req, res, next) => {
 	res.setHeader(
 		"Access-Control-Allow-Origin",

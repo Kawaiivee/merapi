@@ -1,5 +1,5 @@
 var Note = require("@/../../Models/Note");
-const logTag = "[NoteController.js]";
+const logTag: String = "[NoteController.js]";
 
 exports.GetNoteList = (req, res) =>{
     console.log(`${logTag} GetNoteList called`);
