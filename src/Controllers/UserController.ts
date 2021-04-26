@@ -13,7 +13,7 @@ exports.GetUserList = async (req: express.Request, res: express.Response) => {
 exports.AddUser = async (req: express.Request, res: express.Response) => {
     console.log(`${logTag} AddUser called`);
 
-    const newUser: IUser = {
+    const newUser: User = {
         userId: req.body.userId,
         name: req.body.name
     };

@@ -5,6 +5,6 @@ export interface IUser extends Document {
     name: string
 }
 
-export type User {
-    
+export type User =  {
+    user: IUser;
 }

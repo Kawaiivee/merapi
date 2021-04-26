@@ -1,6 +1,6 @@
 // index.ts contains mongo process.env vars
 var User = require("@/../../src/Models/User");
-import IUser from '@/../../src/types/interfaces';
+import IUser from '../types/types';
 
 const logTag = "[MongoAPI.ts]";
 
