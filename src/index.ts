@@ -5,9 +5,9 @@ import bodyParser from 'body-parser';
 const app = express();
 const mongoose = require('mongoose');
 
-const logTag = '[index.js]';
-const UserController = require('@/../../Controllers/UserController');
-const NoteController = require('@/../../Controllers/NoteController');
+const logTag = '[index.ts]';
+const UserController = require('@/../../src/Controllers/UserController');
+const NoteController = require('@/../../src/Controllers/NoteController');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true , user: process.env.USER, pass: process.env.PASS, dbName: process.env.DATABASE_NAME });
@@ -15,8 +15,9 @@ const db = mongoose.connection;
 db.on('error', (error: Error) => console.error(error));
 db.once('open', () => console.log(`${logTag} connected to database`));
 
-//Cors
-app.use((req, res, next) => {
+//init express + cors
+app.use(express.json());
+app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
 	res.setHeader(
 		"Access-Control-Allow-Origin",
 		"*"
@@ -32,17 +33,17 @@ app.use((req, res, next) => {
 	next();
 });
 
-app.use(express.json());
-
 //User Controller Endpoints
-app.get('/user/list', (req, res) => {
-	return UserController.GetUserList();
+app.get('/user/list', async (req: express.Request, res: express.Response) => {
+	const result = await UserController.GetUserList(req, res);
+	res.send(result);
 });
 
 app.get('/user/:userId', UserController.GetUser);
 
-app.post('/user/add', (req, res) => {
-	return UserController.AddUser(req);
+app.post('/user/add', async (req: express.Request, res: express.Response) => {
+	const result = await UserController.AddUser(req);
+	res.send(result);
 });
 
 app.post('/user/edit', UserController.EditUser);
