@@ -15,5 +15,5 @@ RUN yarn --pure-lockfile
 COPY . .
 
 # Use the port used by our server.js configuration
-EXPOSE 3600
+EXPOSE 3000
 CMD [ "yarn", "serve" ]
