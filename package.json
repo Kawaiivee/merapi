@@ -1,0 +1,26 @@
+{
+  "name": "merapi",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Kawaiivee/merapi.git",
+  "author": "Kawaiivee <Kawaiivee@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^4.3.4",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "delay": 2000,
+    "env": {
+      "PORT": 3000
+    }
+  }
+}
